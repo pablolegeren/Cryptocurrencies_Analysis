@@ -1,5 +1,8 @@
-import descargaDatos
-def main():
-    descargaDatos.menu_seleccion_par()
+from Menu import Menu
 
-main()
+def main():
+    menu = Menu()
+    menu.mostrar_menu()
+
+if __name__ == "__main__":
+    main()
