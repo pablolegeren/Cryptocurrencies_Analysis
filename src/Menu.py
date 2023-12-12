@@ -17,7 +17,7 @@ class Menu:
             11: "SALIR"
         }
 
-    def mostrar_menu(self):
+    def menu(self):
         while True:
             print("Seleccione un par de monedas:")
             for key, value in self.pares.items():
@@ -29,10 +29,10 @@ class Menu:
                 print("SALIENDO")
                 break
             elif opcion in range(1, 11):
-                self.descargar_y_procesar_datos(self.pares.get(opcion))
-                break
+                return self.pares[opcion]
             else:
                 print("Selección no válida")
+
 
     def descargar_y_procesar_datos(self, par):
         datos = self.descargador.descargar_datos(par)
