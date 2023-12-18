@@ -5,7 +5,15 @@ import DescargadorDatos as dd
 class Indicadores:
 
     def __init__(self, datos):
-        self.datos=datos
+        try:
+            if not isinstance(datos, pd.DataFrame):
+                raise ValueError("Los datos deben ser un DataFrame de pandas.")
+
+            # Resto del código para la inicialización
+            self.datos = datos
+
+        except Exception as e:
+            print(f"Error durante la inicialización: {e}")
 
     def calcular_estocastico(self, periodos=14, k_suavizado=3, d_suavizado=3):
         # Calcular %K
@@ -77,6 +85,24 @@ class Indicadores:
         plt.title('Órdenes de Compra y Venta')
         plt.legend()
         plt.show()
+
+
+if __name__ == "__main__":
+    try:
+        descargador = dd.DescargadorDatos()
+        datos = descargador.descargar_datos("BTCUSD")
+
+        if datos is not None:
+            indicadores = Indicadores(datos)
+            indicadores.calcular_estocastico()
+            indicadores.graficar_estocastico()
+            indicadores.calcular_ordenes()
+            indicadores.graficar_ordenes()
+        else:
+            print("No se pudieron obtener los datos.")
+
+    except Exception as e:
+        print(f"Error general: {e}")
 
 
 if __name__ == "__main__":

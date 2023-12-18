@@ -3,27 +3,32 @@ from DescargadorDatos import *
 from Indicadores import *
 
 def main():
-    #Menu de selección
-    menu = Menu()
-    par = menu.menu()
+    try:
+        # Menu de selección
+        menu = Menu()
+        par = menu.menu()
 
-    #Descarga de datos
-    descargador = DescargadorDatos()
-    datos = descargador.descargar_datos(par)
+        # Descarga de datos
+        descargador = DescargadorDatos()
+        datos = descargador.descargar_datos(par)
 
-    #Indicadores
-    indicadores = Indicadores(datos)
+        if datos is not None:
+            # Indicadores
+            indicadores = Indicadores(datos)
 
-    #Calcular y graficar estocásticos
-    indicadores.calcular_estocastico()
-    indicadores.graficar_estocastico()
+            # Calcular y graficar estocásticos
+            indicadores.calcular_estocastico()
+            indicadores.graficar_estocastico()
 
-    #Calcular y graficar odenes
-    indicadores.calcular_ordenes()
-    indicadores.graficar_ordenes()
-    #indicadores.generar_senales()
+            # Calcular y graficar órdenes
+            indicadores.calcular_ordenes()
+            indicadores.graficar_ordenes()
 
-    #indicadores.graficar_senales()
+        else:
+            print("No se pudieron obtener los datos.")
+
+    except Exception as e:
+        print(f"Error en la ejecución principal: {e}")
 
 if __name__ == "__main__":
     main()
