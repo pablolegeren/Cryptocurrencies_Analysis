@@ -19,7 +19,10 @@ def main():
     indicadores.graficar_estocastico()
 
     #Calcular y graficar odenes
+    indicadores.calcular_ordenes()
+    indicadores.graficar_ordenes()
     #indicadores.generar_senales()
+
     #indicadores.graficar_senales()
 
 if __name__ == "__main__":

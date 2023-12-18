@@ -44,35 +44,40 @@ class Indicadores:
         plt.title('Gráfico de Estocástico')
         plt.show()
 
-    def generar_senales(self):
-        # Generar señales de compra y venta según las condiciones del estocástico
-        self.datos.loc[:, 'senyal'] = 0  # 0: Mantener, 1: Comprar, -1: Vender
+    def calcular_ordenes(self):
+        #Condiciones de compra. Cuando %K (linea azul) cruza a %D (linea roja) hacia arriba.
+        condiciones_compra = ((self.datos['%K'] > self.datos['%D']) &
+                              (self.datos['%K'].shift(1) <= self.datos['%D'].shift(1)))
+        condiciones_venta = ((self.datos['%K'] < self.datos['%D']) &
+                              (self.datos['%K'].shift(1) >= self.datos['%D'].shift(1)))
 
-        # Condiciones de sobrecompra y sobreventa
-        sobrecompra_condicion = self.datos['%K'] > 80
-        sobreventa_condicion = self.datos['%K'] < 20
+        #Asigna un 1 cuando la orden es de compra y un -1 cuando es de venta, deja un 0 cuando hay que mantener.
+        self.datos['orden'] = 0
+        self.datos.loc[condiciones_compra, 'orden'] = 1 #Compra
+        self.datos.loc[condiciones_venta, 'orden'] = -1 #Venta
 
-        # Generar señales de compra y venta
-        self.datos.loc[sobrecompra_condicion & (self.datos['%D'] > self.datos['%K']), 'senyal'] = -1  # Vender
-        self.datos.loc[sobreventa_condicion & (self.datos['%D'] < self.datos['%K']), 'senyal'] = 1  # Comprar
-
-        # Eliminar filas con señal 0 (mantener) para mejorar la visualización del gráfico
-        self.datos = self.datos[self.datos['senyal'] != 0]
-
-    def graficar_senales(self):
-        # Gráfico de señales de compra y venta
+    def graficar_ordenes(self):
         plt.figure(figsize=(10, 6))
+
+        # Gráfico de precios
         plt.plot(self.datos['close'], label='Precio de cierre', color='blue')
-        plt.scatter(self.datos.index, self.datos['senyal'] * self.datos['close'], marker='^', color='green',
-                    label='Compra', lw=0, s=100)
-        plt.scatter(self.datos.index, -self.datos['senyal'] * self.datos['close'], marker='v', color='red',
-                    label='Venta', lw=0, s=100)
+
+        # Marcadores para órdenes de compra y venta
+        plt.scatter(self.datos.index[self.datos['orden'] == 1],
+                    self.datos['close'][self.datos['orden'] == 1],
+                    marker='^', color='green', label='Compra', lw=0, s=100)
+
+        plt.scatter(self.datos.index[self.datos['orden'] == -1],
+                    self.datos['close'][self.datos['orden'] == -1],
+                    marker='v', color='red', label='Venta', lw=0, s=100)
+
+        # Configuración del gráfico
         plt.xlabel('Fecha')
         plt.ylabel('Precio de cierre')
-        plt.title('Señales de Compra y Venta')
+        plt.title('Órdenes de Compra y Venta')
         plt.legend()
         plt.show()
-        #TODO Arreglar, no funciona bien
+
 
 if __name__ == "__main__":
     descargador = dd.DescargadorDatos()
@@ -80,3 +85,6 @@ if __name__ == "__main__":
     indicadores = Indicadores(datos)
     indicadores.calcular_estocastico()
     indicadores.graficar_estocastico()
+    indicadores.calcular_ordenes()
+    indicadores.graficar_ordenes()
+
