@@ -13,12 +13,14 @@ def main():
         datos = descargador.descargar_datos(par)
 
         if datos is not None:
-            # Indicadores
+
+            #Indicadores
             indicadores = Indicadores(datos)
 
             # Calcular y graficar estocásticos
             indicadores.calcular_estocastico()
             indicadores.graficar_estocastico()
+
 
             # Calcular y graficar órdenes
             indicadores.calcular_ordenes()
@@ -32,3 +34,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

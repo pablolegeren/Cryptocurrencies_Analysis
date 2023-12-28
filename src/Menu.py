@@ -17,13 +17,14 @@ class Menu:
             11: "SALIR"
         }
 
+
     def menu(self):
         while True:
             print("Seleccione un par de monedas:")
             for key, value in self.pares.items():
                 print(f"{key}. {value}")
 
-            opcion = int(input("Introduzca el número de la opción deseada: "))
+            opcion = int(input("Introduzca el par deseado: "))
 
             if opcion == 11:
                 print("SALIENDO")
@@ -32,6 +33,7 @@ class Menu:
                 return self.pares[opcion]
             else:
                 print("Selección no válida")
+
 
 
     def descargar_y_procesar_datos(self, par):
