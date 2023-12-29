@@ -14,7 +14,7 @@ def test_calcular_estocastico():
     indicadores = Indicadores(datos_prueba)
     indicadores.calcular_estocastico(periodos=2)
 
-    # Verificar que las columnas se hayan calculado correctamente
+    # Verificar que las columnas nuevas se hayan creado
     assert 'Min' in datos_prueba.columns
     assert 'Max' in datos_prueba.columns
     assert '%K' in datos_prueba.columns
