@@ -1,6 +1,3 @@
-[![Tests](https://github.com/ikeryanez/ProyectoPython/.github/workflows/ci.yml/badge.svg)](https://github.com/ikeryanez/ProyectoPython/actions/workflows/ci.yml)
-[![Coverage](https://codecov.io/gh/ikeryanez/ProyectoPython/branch/main/graph/badge.svg)](https://codecov.io/gh/ikeryanez/ProyectoPython)
-
 # Análisis Técnico de Criptomonedas
 
 Este proyecto es parte de la asignatura Python para Análisis de Datos de Máster en Big Data Science de la Universidad de Navarra.
