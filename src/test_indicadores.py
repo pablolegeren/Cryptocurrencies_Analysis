@@ -14,14 +14,14 @@ def test_calcular_estocastico():
     indicadores = Indicadores(datos_prueba)
     indicadores.calcular_estocastico(periodos=2)
 
-    # Verificar que las columnas se hayan calculado correctamente
+    # Verificar que las columnas nuevas se hayan creado
     assert 'Min' in datos_prueba.columns
     assert 'Max' in datos_prueba.columns
     assert '%K' in datos_prueba.columns
     assert '%D' in datos_prueba.columns
     assert '%SD' in datos_prueba.columns
 
-    # Verificar que los cálculos sean precisos (puedes ajustar las aserciones según tus necesidades)
+    # Verificar que los cálculos sean precisos
     assert datos_prueba['Min'].iloc[0] == 98
     assert datos_prueba['Max'].iloc[0] == 120
     assert datos_prueba["%K"].iloc[0] == 7/22*100
