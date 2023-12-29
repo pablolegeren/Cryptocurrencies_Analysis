@@ -1,5 +1,3 @@
-import pandas as pd
-
 class Indicadores:
 
     def __init__(self, datos):

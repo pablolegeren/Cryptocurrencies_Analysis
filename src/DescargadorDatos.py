@@ -1,7 +1,6 @@
 import krakenex
 import pandas as pd
 from pykrakenapi import KrakenAPI
-import streamlit as st
 
 class DescargadorDatos:
     def __init__(self):

@@ -1,5 +1,3 @@
-# En tu aplicación principal (main.py)
-
 from Menu import Menu
 from DescargadorDatos import DescargadorDatos
 from Indicadores import Indicadores

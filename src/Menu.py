@@ -1,8 +1,5 @@
-
-from DescargadorDatos import DescargadorDatos
-# Añade la siguiente importación al principio del archivo
+from src.DescargadorDatos import DescargadorDatos
 import streamlit as st
-
 
 class Menu:
     def __init__(self):
