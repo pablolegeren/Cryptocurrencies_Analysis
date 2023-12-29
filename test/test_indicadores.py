@@ -1,5 +1,4 @@
 import pandas as pd
-import pytest
 from src.Indicadores import Indicadores
 
 def test_calcular_estocastico():
