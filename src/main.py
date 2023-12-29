@@ -1,10 +1,14 @@
-from Menu import *
-from DescargadorDatos import *
-from Indicadores import *
+from Menu import Menu
+from DescargadorDatos import DescargadorDatos
+from Indicadores import Indicadores
+from Graficos import Graficos
+import streamlit as st
 
 def main():
     try:
-        # Menu de selección
+        st.title("Análisis Técnico de Criptomonedas")
+
+        # Menú de selección
         menu = Menu()
         par = menu.menu()
 
@@ -14,24 +18,24 @@ def main():
 
         if datos is not None:
 
-            #Indicadores
+            # Indicadores
             indicadores = Indicadores(datos)
 
-            # Calcular y graficar estocásticos
+            # Calcular indicadores
             indicadores.calcular_estocastico()
-            indicadores.graficar_estocastico()
-
-
-            # Calcular y graficar órdenes
             indicadores.calcular_ordenes()
-            indicadores.graficar_ordenes()
+
+            # Graficos
+            graficos = Graficos(datos)
+            graficos.graficar_datos()
+            graficos.graficar_estocastico()
+            graficos.graficar_ordenes()
 
         else:
-            print("No se pudieron obtener los datos.")
+            st.warning("No se pudieron obtener los datos.")
 
     except Exception as e:
-        print(f"Error en la ejecución principal: {e}")
+        st.error(f"Error en la ejecución principal: {e}")
 
 if __name__ == "__main__":
     main()
-

@@ -1,4 +1,5 @@
 from DescargadorDatos import DescargadorDatos
+import streamlit as st
 
 class Menu:
     def __init__(self):
@@ -14,28 +15,14 @@ class Menu:
             8: "DOGE/USD",
             9: "TRX/USD",
             10: "LINK/USD",
-            11: "SALIR"
         }
 
-
     def menu(self):
-        while True:
-            print("Seleccione un par de monedas:")
-            for key, value in self.pares.items():
-                print(f"{key}. {value}")
+        st.sidebar.header("Selección de Par")
 
-            opcion = int(input("Introduzca el par deseado: "))
+        # Selección de par de monedas
+        opcion_par = st.sidebar.selectbox("Seleccione un par de monedas:", list(self.pares.values()))
 
-            if opcion == 11:
-                print("SALIENDO")
-                break
-            elif opcion in range(1, 11):
-                return self.pares[opcion]
-            else:
-                print("Selección no válida")
+        return opcion_par
 
 
-
-    def descargar_y_procesar_datos(self, par):
-        datos = self.descargador.descargar_datos(par)
-        print(f"Datos descargados para {par}:\n{datos.head()}")
