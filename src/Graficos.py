@@ -20,11 +20,25 @@ class Graficos:
     def graficar_estocastico(self):
         # Gráfico de %K y %D
         st.header("Gráfico de Estocástico")
-        st.line_chart(self.datos[['%K', '%D']])
+        fig_estocastico = go.Figure()
+
+        fig_estocastico.add_trace(go.Scatter(x=self.datos.index, y=self.datos['%K'], mode='lines', name='%K'))
+        fig_estocastico.add_trace(go.Scatter(x=self.datos.index, y=self.datos['%D'], mode='lines', name='%D'))
+
+        # Configura el diseño del gráfico
+        fig_estocastico.update_layout(
+            title="Gráfico de Estocástico",
+            xaxis_title="Fecha",
+            yaxis_title="Valor",
+            legend=dict(title="Indicadores"),
+        )
+
+        # Muestra el gráfico de Plotly
+        st.plotly_chart(fig_estocastico, use_container_width=True, width=0)
 
     def graficar_ordenes(self):
-        fig = px.line(x=self.datos.index, y=self.datos['close'], labels={'y': 'Precio de cierre'},
-                      title='Órdenes de Compra y Venta')
+        st.header("Ordenes de compra y venta")
+        fig = px.line(x=self.datos.index, y=self.datos['close'], labels={'y': 'Precio de cierre'})
 
         compras = self.datos[self.datos['Orden'] == 1]
         ventas = self.datos[self.datos['Orden'] == -1]

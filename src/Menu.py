@@ -1,4 +1,4 @@
-from src.DescargadorDatos import DescargadorDatos
+from DescargadorDatos import DescargadorDatos
 import streamlit as st
 
 class Menu:

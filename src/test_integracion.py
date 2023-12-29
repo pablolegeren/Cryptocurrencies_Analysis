@@ -1,6 +1,6 @@
-from src.Menu import Menu
-from src.DescargadorDatos import DescargadorDatos
-from src.Indicadores import Indicadores
+from Menu import Menu
+from DescargadorDatos import DescargadorDatos
+from Indicadores import Indicadores
 from unittest.mock import patch
 
 def test_integration():

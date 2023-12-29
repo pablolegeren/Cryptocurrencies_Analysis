@@ -1,5 +1,5 @@
 import pandas as pd
-from src.Indicadores import Indicadores
+from Indicadores import Indicadores
 
 def test_calcular_estocastico():
     # Datos de prueba
