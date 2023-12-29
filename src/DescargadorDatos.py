@@ -12,7 +12,6 @@ class DescargadorDatos:
             ohlc, last = self.kraken_api.get_ohlc_data(par, ascending=True)
             ohlc = pd.DataFrame(ohlc)
             ohlc[['open', 'high', 'low', 'close']] = ohlc[['open', 'high', 'low', 'close']].astype(float)
-            ohlc["time"] = pd.to_datetime(ohlc["time"], unit="s")
             return ohlc
         except Exception as e:
             print(f"Error al descargar datos: {e}")

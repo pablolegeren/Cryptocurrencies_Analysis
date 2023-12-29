@@ -19,7 +19,7 @@ class Graficos:
 
     def graficar_estocastico(self):
         # Gráfico de %K y %D
-        st.header("Gráfico de Estocástico")
+        st.header("Indicadores Estocásticos")
         fig_estocastico = go.Figure()
 
         fig_estocastico.add_trace(go.Scatter(x=self.datos.index, y=self.datos['%K'], mode='lines', name='%K'))
@@ -27,7 +27,6 @@ class Graficos:
 
         # Configura el diseño del gráfico
         fig_estocastico.update_layout(
-            title="Gráfico de Estocástico",
             xaxis_title="Fecha",
             yaxis_title="Valor",
             legend=dict(title="Indicadores"),
@@ -38,7 +37,7 @@ class Graficos:
 
     def graficar_ordenes(self):
         st.header("Ordenes de compra y venta")
-        fig = px.line(x=self.datos.index, y=self.datos['close'], labels={'y': 'Precio de cierre'})
+        fig = px.line(x=self.datos.index, y=self.datos['close'], labels={'x': 'Fecha', 'y': 'Precio de cierre'})
 
         compras = self.datos[self.datos['Orden'] == 1]
         ventas = self.datos[self.datos['Orden'] == -1]
