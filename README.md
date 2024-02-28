@@ -2,7 +2,7 @@
 
 This repository contains a project developed by Iker Yáñez and Pablo Legerén for the Python for data analysis course of the Official Master in Big Data Science of the University of Navarra.
 
-Final Grade: 10 with High Honors
+**Final Grade: 10 with High Honors**
 
 The objectives of this work were to obtain data on the price of a pair of currencies and subsequently plot their movements.
 
